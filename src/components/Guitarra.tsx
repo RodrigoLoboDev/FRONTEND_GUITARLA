@@ -9,11 +9,14 @@ type GuitarProps = {
 const Guitarra = ({guitarra, addCartItem} : GuitarProps) => {
 
     const { attributes : { descripcion, nombre, precio, imagen: { data }} } = guitarra
+    
+    const urlImagen = data[0].attributes.formats.medium ? data[0].attributes.formats.medium.url : data[0].attributes.formats.small.url
+    const altImagen = data[0].attributes.formats.medium ? data[0].attributes.formats.medium.name : data[0].attributes.formats.small.name
 
   return (
     <div className="col-md-6 col-lg-4 my-4 row align-items-center">
         <div className="col-4">
-            <img className="img-fluid" src={`${data[0].attributes.formats.medium.url}`} alt={`${data[0].attributes.formats.medium.name}`} />
+            <img className="img-fluid" src={`${urlImagen}`} alt={`${altImagen}`} />
         </div>
         <div className="col-8">
             <h3 className="text-black fs-4 fw-bold text-uppercase">{nombre}</h3>

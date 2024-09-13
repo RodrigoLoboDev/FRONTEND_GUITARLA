@@ -20,7 +20,7 @@ export const GuitarSchema = z.object({
 						medium: z.object({
 							url: z.string(),
 							name: z.string()
-						}),
+						}).optional(),
 						small: z.object({
 							url: z.string(),
 							name: z.string()

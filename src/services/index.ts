@@ -5,10 +5,12 @@ export const getGuitars = async () => {
 
     try {
         const url = `${import.meta.env.VITE_BACKEND_URL}/api/guitarras?populate=imagen`
+        // console.log(url);
+        
         const {data} = await axios(url)
-        //console.log(data.data);
+        // console.log(data.data);
         const result = GuitarsSchema.safeParse(data.data)
-        //console.log(result);
+        // console.log(result);
         if (result.success) {
             return result.data
         }
