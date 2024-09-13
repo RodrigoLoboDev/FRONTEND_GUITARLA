@@ -92,6 +92,7 @@ export const useGuitarStore = create<GuitarsState>()(
       }))
     }
 }), {
-    name: 'guitars-storage'
+  name: 'carrito-storage',
+  partialize: (state) => ({ carrito: state.carrito }), // Solo persiste el carrito
 })
 ))
