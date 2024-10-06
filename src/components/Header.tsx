@@ -1,69 +1,51 @@
-import { useMemo } from 'react';
-import { useGuitarStore } from '../store';
-import Item from './Item';
-import { formatearDinero } from '../helpers';
+import { Link, useNavigate } from "react-router-dom"
+import Navegacion from "./Navegacion"
+import NavegacionMobile from "./NavegacionMobile"
+import DarkMode from "./DarkMode"
+import { ShoppingBagIcon, HeartIcon } from "@heroicons/react/20/solid"
+import { useMemo } from "react"
+import { useAppStore } from "../stores/useAppStore"
 
 const Header = () => {
 
-    const carrito = useGuitarStore(state => state.carrito)
-    const vaciarCartItem = useGuitarStore(state => state.vaciarCartItem)
-    const total = useMemo(() => carrito.reduce((totalState, item) => totalState + (item.attributes.precio * item.count), 0), [carrito])
+    const carrito = useAppStore(state => state.carrito)
+    const countItemCart = useMemo(() => carrito.length, [carrito])
+
+    const navigate = useNavigate()
 
   return (
-    <header className="py-5 header">
-        <div className="container-xl">
-            <div className="row justify-content-center justify-content-md-between">
-                <div className="col-8 col-md-3">
-                    <a href="index.html">
-                        <img className="img-fluid" src="/img/logo.svg" alt="imagen logo" />
-                    </a>
-                </div>
-                <nav className="col-md-6 a mt-5 d-flex align-items-start justify-content-end">
-                    <div 
-                        className="carrito"
-                    >
-                        <img className="img-fluid" src="/img/carrito.png" alt="imagen carrito" />
-
-                        <div id="carrito" className="bg-white p-3">
-
-                            {carrito.length <= 0 ? (
-                                <p className="text-center">El carrito esta vacio</p>
-                            ) : (
-                                <>
-                                    <table className="w-100 table">
-                                        <thead>
-                                            <tr>
-                                                <th>Imagen</th>
-                                                <th>Nombre</th>
-                                                <th>Precio</th>
-                                                <th>Cantidad</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            {carrito.map( item => (
-                                                <Item 
-                                                    key={item.id}
-                                                    item={item}
-                                                />
-                                            ))}
-
-                                        </tbody>
-                                    </table>
-
-                                    <p className="text-end">Total pagar: <span className="fw-bold">{formatearDinero(total)}</span></p>
-                                    <button 
-                                        onClick={vaciarCartItem}
-                                        className="btn btn-dark w-100 mt-3 p-2">
-                                    Vaciar Carrito</button>
-                                </>
-                            )}
-
-                            
-                        </div>
+    <header className="bg-guitar bg-cover bg-center h-auto md:h-[10rem] lg:h-[15rem] inset-0">
+        <div className='bg-black bg-opacity-70 w-full h-full'>
+            <div className=" py-5 container mx-auto w-[95%]">
+                <div className="flex justify-between items-center md:items-end flex-col md:flex-row gap-5">
+                    <div className=" w-3/4 md:w-2/3">
+                        <Link to={'/'}>
+                            <img className="max-w-full h-auto" src="/img/logo.svg" alt="imagen logo" />
+                        </Link>
                     </div>
-                </nav>
+                    
+                    <div className="w-full flex justify-end gap-5 items-center">
+                        <Navegacion />
+
+                        <div className=" w-full flex justify-end items-center md:hidden">
+                            <NavegacionMobile />
+                        </div>
+
+                        <div className=" flex gap-1 cursor-pointer" onClick={() => navigate('/compra')}>
+                            <ShoppingBagIcon className='w-8 h-8 text-white ' />
+                            {countItemCart > 0 && <p className=' text-white'>{countItemCart}</p>}
+                        </div>
+
+                        <button 
+                            type="button"
+                            onClick={() => navigate('/favoritos')}
+                        >
+                            <HeartIcon className=" w-10 h-10 text-white" />
+                        </button>
+                        
+                        <DarkMode />
+                    </div>
+                </div>
             </div>
         </div>
     </header>
