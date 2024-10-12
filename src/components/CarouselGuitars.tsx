@@ -80,7 +80,7 @@ const CarouselGuitars = ({guitars, countCard} : CarouselGuitarsProps) => {
                     </div>
                     <div className=" w-2/3 space-y-3">
                     <h3 className="text-black dark:text-gray-300 font-black uppercase text-2xl">{product.attributes.nombre}</h3>
-                    <p className=' dark:text-white'>{product.attributes.descripcion}</p>
+                    <p className=' dark:text-white line-clamp-4'>{product.attributes.descripcion}</p>
                     <p className=" text-orange-400 dark:text-orange-300 text-4xl font-black">{formatearDinero(product.attributes.precio)}</p>
                     </div>
                 </div>

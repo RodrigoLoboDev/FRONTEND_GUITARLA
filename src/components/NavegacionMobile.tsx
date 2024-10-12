@@ -30,6 +30,10 @@ export default function NavegacionMobile() {
               to='/blog'
               className='block p-2 hover:text-orange-400'
             >Blogs</Link>
+            <Link
+              to='/nosotros'
+              className='block p-2 hover:text-orange-400'
+            >Nosotros</Link>
           </div>
         </Popover.Panel>
       </Transition>

@@ -14,6 +14,11 @@ const Navegacion = () => {
                 {isActive}) => isActive ? 'font-bold text-orange-500 uppercase' : 'font-bold text-white uppercase'} 
             to={'/blog'} 
         >Blog</NavLink>
+        <NavLink 
+            className={(
+                {isActive}) => isActive ? 'font-bold text-orange-500 uppercase' : 'font-bold text-white uppercase'} 
+            to={'/nosotros'} 
+        >Nosotros</NavLink>
     </nav>
   )
 }

@@ -11,6 +11,8 @@ import CompraPage from './views/CompraPage'
 import FavoritesPage from './views/FavoritesPage'
 import SuccessPage from './views/SeccessPage'
 import FailurePage from './views/FailurePage'
+import AboutUsPage from './views/AboutUsPage'
+import NotFoundPage from './views/NotFoundPage'
 
 
 export const router = createBrowserRouter([
@@ -65,6 +67,17 @@ export const router = createBrowserRouter([
                 path: 'failure',
                 element: <FailurePage />,
                 errorElement: <ErrorPage />
+            },
+            {
+                path: 'nosotros',
+                element: <AboutUsPage />,
+                errorElement: <ErrorPage />
+            },
+
+            // Ruta de Error 404 (Not Found)
+            {
+              path: '*', 
+              element: <NotFoundPage />
             }
         ]
     }

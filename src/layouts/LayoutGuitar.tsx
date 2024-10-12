@@ -5,6 +5,7 @@ import { useEffect } from "react"
 // import { useGuitarStore } from "../store"
 import CarouselPromos from "../components/CarouselPromos"
 import { useAppStore } from "../stores/useAppStore"
+import WhatsAppButton from "../components/WhatsAppButton"
 
 export default function LayoutGuitar() {
 
@@ -31,6 +32,8 @@ export default function LayoutGuitar() {
           <Outlet />
           
           <Footer />
+
+          <WhatsAppButton />
         </div>
     </>
   )

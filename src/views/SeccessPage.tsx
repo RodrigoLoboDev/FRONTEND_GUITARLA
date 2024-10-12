@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { getDataClient } from "../services";
+import { useAppStore } from "../stores/useAppStore";
 
 const SuccessPage = () => {  
 
@@ -10,9 +11,12 @@ const SuccessPage = () => {
   const paymentId = queryParams.get('payment_id');
   const preferenceId = queryParams.get('preference_id');
 
+  const vaciarCartItem = useAppStore(state => state.vaciarCartItem)
+
   useEffect(() => {
     if (paymentId && preferenceId) {
       getDataClient(paymentId, preferenceId)
+      vaciarCartItem()
     }
   }, [])
 

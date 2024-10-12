@@ -5,6 +5,8 @@ import { CartItem, Guitar } from "../types";
 // type del state
 export type CartSliceType = {
     carrito: CartItem[]
+    discountThreshold1: number
+    discountThreshold2: number
     addCartItem: (data: Guitar) => void // void no retorna nada
     incrementar: (id: Guitar['id']) => void
     decrementar: (id: Guitar['id']) => void
@@ -17,6 +19,8 @@ export type CartSliceType = {
 // get - para tomar el state
 export const createCartSlice : StateCreator<CartSliceType> = (set, get) => ({
     carrito: [],
+    discountThreshold1: 10000,
+    discountThreshold2: 15000,
     addCartItem: (data) => {
 
         const { carrito } = get();

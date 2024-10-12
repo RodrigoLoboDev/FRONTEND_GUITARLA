@@ -25,7 +25,7 @@
 
 ## 🎥 Demostración
 
-Puedes ver una demostración en video de cómo funciona la aplicación en [este enlace de YouTube](https://www.youtube.com/watch?v=OPiSc6o85jY&t=11s).
+Puedes ver una demostración en video de cómo funciona la aplicación en [este enlace de YouTube](https://www.youtube.com/watch?v=IRFA1zLHhuk).
 
 ## 🎥 Prueba la Aplicación
 
@@ -35,7 +35,7 @@ Puedes probar la aplicación en vivo visitando [este enlace en Netlify](https://
 
 - **Visualización de Productos**: Los productos se muestran de manera organizada con categorías separadas para guitarras eléctricas y acústicas.
 - **Carrusel de Ofertas**: Un carrusel automático en la página principal destaca descuentos y promociones actuales.
-- **Sección de Blog**: Artículos y noticias relacionadas con el mundo de las guitarras y la música.
+- **Sección de Blog**: Artículos y noticias relacionadas con el mundo de las guitarras y la música. Además, los usuarios pueden agregar comentarios (reviews) a cada artículo con su nombre, comentario y puntuación en estrellas del 1 al 5. Los comentarios deben ser aprobados por el propietario de la página antes de ser visibles públicamente.
 - **Guitarras Destacadas**: Gestión y visualización de guitarras destacadas para resaltar los productos más populares o en oferta.
 - **Acceso con Slugs Dinámicos**: Cada guitarra tiene una URL amigable para mejorar el SEO y facilitar el acceso directo a los productos.
 - **Navegación Mobile con Menú de Hamburguesa**: Una interfaz optimizada para dispositivos móviles con un menú de navegación tipo hamburguesa.

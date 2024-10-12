@@ -1,13 +1,17 @@
 import { StateCreator } from 'zustand'
-import { Blog } from "../types";
+import { Blog, DarftReview, Review } from "../types";
 
 
 // type del state
 export type BlockSliceType = {
     blogs: Blog[]
     blog: Blog
+    draftReview: DarftReview
+    reviews: Review[]
     loadBlogs: (blogs: Blog[]) => void
     loadBlog: (blog: Blog) => void
+    loadDarftReview: (draftReview: DarftReview) => void
+    loadReview: (reviews: Review[]) => void
 }
 
 // Nuestro hook
@@ -16,6 +20,13 @@ export type BlockSliceType = {
 export const createBlockSlice : StateCreator<BlockSliceType> = (set) => ({
     blogs: [],
     blog: {} as Blog,
+    draftReview: {
+        name: "",
+        content: "",
+        rating: 0,
+        blog: 0
+    },
+    reviews: [],
     loadBlogs: (blogs) => {
         set(() => ({
           blogs
@@ -26,4 +37,14 @@ export const createBlockSlice : StateCreator<BlockSliceType> = (set) => ({
             blog
         }))
     },
+    loadDarftReview: (draftReview) => {
+        set(() => ({
+            draftReview
+        }))
+    },
+    loadReview: (reviews) => {
+        set(() => ({
+            reviews
+        }))
+    }
 })

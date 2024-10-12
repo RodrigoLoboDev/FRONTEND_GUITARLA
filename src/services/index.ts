@@ -1,5 +1,5 @@
 import axios from "axios"
-import { BlogsSchema, CategoriesSchema, GuitarSchema, GuitarsSchema, Order, PromosSchema } from "../types";
+import { Blog, BlogsSchema, CategoriesSchema, DarftReview, DraftReviewSchema, GuitarSchema, GuitarsSchema, Order, PromosSchema, ReviewsSchema } from "../types";
 
 export const getGuitars = async () => {
 
@@ -144,6 +144,7 @@ export const getDataClient = async (paymentId: string, preferenceId: string) => 
     try {
         // Paso 1: Obtener los detalles del pago desde la API de Mercado Pago
         const url = `https://api.mercadopago.com/v1/payments/${paymentId}`;
+        
         const result = await axios(url, {
             headers: {
                 'Authorization': `Bearer ${import.meta.env.VITE_MERCARDOPAGO_ACCESS_TOKEN}`
@@ -152,6 +153,7 @@ export const getDataClient = async (paymentId: string, preferenceId: string) => 
 
         // Extraer el estado del pago y detalles del cliente
         const paymentStatus = result.data.status;  // por ejemplo, 'approved', 'rejected', etc.
+        
         const playerInfo = {
             email: result.data.payer.email,
             firstName: result.data.payer.first_name,
@@ -186,3 +188,51 @@ export const getDataClient = async (paymentId: string, preferenceId: string) => 
         console.log('Error al procesar el pago:', error);
     }
 };
+
+// Crear comentarios
+export const createReview = async (datos : DarftReview) => {
+
+    try {
+        // Validar los datos antes de enviarlos a la API
+        DraftReviewSchema.parse(datos);
+
+        const url = `${import.meta.env.VITE_BACKEND_URL}/api/reviews`
+
+        const {data} = await axios.post(url, {
+            data: datos
+        })
+
+        console.log(data);
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// Traer los comentarios con el Status = true
+export const getReviewByStatus = async () => {
+    try {
+        const url = `${import.meta.env.VITE_BACKEND_URL}/api/reviews?filters[status][$eq]=true&populate=*`
+        const {data} = await axios(url)                
+
+        const result = ReviewsSchema.parse(data.data)       
+        return result
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// Traer los comentarios con el Status = true & blogID
+export const getReviewByStatusAndBlogID = async (id : Blog["id"]) => {    
+    try {
+        const url = `${import.meta.env.VITE_BACKEND_URL}/api/reviews?filters[status][$eq]=true&filters[blog][$eq]=${id}&populate=*`
+        const {data} = await axios(url)                
+
+        const result = ReviewsSchema.parse(data.data)       
+        return result
+        
+    } catch (error) {
+        console.log(error);
+    }
+}

@@ -1,12 +1,26 @@
 import { z } from 'zod'
 
 // los tipos de datos para validar lo que enviar el usuario por el formulario
-// export const DraftGuitarSchema = z.object({
-// 	name: z.string(),
-// 	image: z.string(),
-// 	description: z.string(),
-// 	price: z.number()
-// })
+export const DraftReviewSchema = z.object({
+	name: z.string(),
+	content: z.string(),
+	rating: z.number(),
+	blog: z.number()
+})
+
+export const ReviewSchema = z.object({
+	id: z.number(),
+	attributes: z.object({
+		name: z.string(),
+		content: z.string(),
+		rating: z.number(),
+		blog: z.object({
+			data: z.object({
+				id: z.number()
+			})
+		})
+	})	
+})
 
 // los tipos de datos para validar cuando los traemos de la DB
 export const GuitarSchema = z.object({
@@ -161,6 +175,7 @@ export const OrderSchema = z.object({
 	total: z.number()
 })
 
+export const ReviewsSchema = z.array(ReviewSchema)
 export const GuitarsSchema = z.array(GuitarSchema)
 export const BlogsSchema = z.array(BlogSchema)
 export const CategoriesSchema = z.array(CategorySchema)
@@ -172,6 +187,8 @@ const CartItemSchema = GuitarSchema.extend({
   
 
 // Creamos el type
+export type DarftReview = z.infer<typeof DraftReviewSchema >
+export type Review = z.infer<typeof ReviewSchema >
 export type Guitar = z.infer<typeof GuitarSchema >
 export type CartItem = z.infer<typeof CartItemSchema >
 export type Blog = z.infer<typeof BlogSchema >

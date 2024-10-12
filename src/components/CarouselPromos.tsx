@@ -43,7 +43,7 @@ const CarouselPromos = () => {
                   modules={[Autoplay]}  // Aquí es donde se incluye el módulo de Autoplay
                   spaceBetween={30}
                   slidesPerView={1}
-                  autoplay={{ delay: 2000, disableOnInteraction: false }} // Configuración del autoplay
+                  autoplay={{ delay: 4000, disableOnInteraction: false }} // Configuración del autoplay
                   loop={true}  // Para que el carrusel sea continuo
                   className="h-full container mx-auto max-w-[95%]"
                   >
